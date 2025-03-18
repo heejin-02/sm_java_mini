@@ -18,8 +18,8 @@
 ## 개발진
 |역할|이름|GitHub|
 |------|---|---|
-|팀장|오희진| [GitHub] (https://github.com/heejin-02)|
-|미정|김혜림| [GitHub] (https://github.com/heejin-02)|
-|미정|나규민| [GitHub] (https://github.com/heejin-02)|
-|미정|전정훈| [GitHub] (https://github.com/heejin-02)|
-|미정|한창오| [GitHub] (https://github.com/heejin-02)|
+|팀장|오희진| [GitHub](https://github.com/heejin-02)|
+|미정|김혜림| [GitHub](https://github.com/heejin-02)|
+|미정|나규민| [GitHub](https://github.com/heejin-02)|
+|미정|전정훈| [GitHub](https://github.com/heejin-02)|
+|미정|한창오| [GitHub](https://github.com/heejin-02)|
