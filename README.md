@@ -1,5 +1,5 @@
 # 스마트인재개발원 자바 미니 프로젝트
-## 😖행맨
+## 😖자바로 하는 행맨
 ----
 고전적인 단어 맞추기 게임, **행맨(Hangman)**을 자바 콘솔 기반으로 구현했습니다! 🎉
 랜덤으로 주어진 단어의 글자를 맞히며, 제한된 기회 내에 정답을 완성하세요.
@@ -14,3 +14,12 @@
 
 
 💡 간단하지만 두뇌를 자극하는 재미있는 게임! 직접 도전해보세요. 💡
+----
+## 개발진
+|역할|이름|GitHub|
+|------|---|---|
+|팀장|오희진|[GitHub] (https://github.com/heejin-02)|
+|미정|김혜림|[GitHub] (https://github.com/heejin-02)|
+|미정|나규민|[GitHub] (https://github.com/heejin-02)|
+|미정|전정훈|[GitHub] (https://github.com/heejin-02)|
+|미정|한창오|[GitHub] (https://github.com/heejin-02)|
