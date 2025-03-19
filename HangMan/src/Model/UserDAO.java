@@ -155,7 +155,19 @@ public class UserDAO {
 	}
 	
 	public ArrayList<UserDTO> info_list() {
+		ArrayList<UserDTO> result = new ArrayList<>();
 		
+		getConn();
+		
+		String sql = "select f_score from FINAL_SCORE where ID = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 	
