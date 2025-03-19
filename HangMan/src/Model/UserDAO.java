@@ -12,6 +12,7 @@ public class UserDAO {
 	Connection conn = null;
 	PreparedStatement psmt = null;
 	ResultSet rs = null;
+	int result = 0;
 	
 	
 	public void getConn() { //DB 접속 메소드
@@ -30,7 +31,25 @@ public class UserDAO {
 		}
 	}
 	
+	public boolean Login(UserDTO dto) {
+		getConn();
+		String sql = "SELECT * FROM USERS WHERE USER_ID = ? USER_PW =?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, dto.getUser_id());
+			psmt.setString(2, dto.getUser_pw());
+			result = psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return true;
 	
+	}
 	
 	public void close() { //도구 회수 메소드
 
