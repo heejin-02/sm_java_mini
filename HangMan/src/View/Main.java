@@ -114,7 +114,14 @@ public class Main {
 								System.out.println("게임종료");
 								break;
 							}
-
+							
+							if(i == hangMan.length-1){
+								
+								System.out.println("게임 실패");
+								break;
+							}
+							
+							
 						}
 
 					} else if (input == 2) {
