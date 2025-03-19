@@ -23,7 +23,7 @@ public class GameDAO {
 			String user = "hapjeong_24SW_DS_p1_1";
 			String password = "smhrd1";
 		conn = DriverManager.getConnection(url, user, password);
-		System.out.println(conn);
+		
 		} catch (Exception e) {
 			
 			e.printStackTrace();
@@ -44,11 +44,11 @@ public class GameDAO {
 		}
 	}
 	
-	public GameDTO getWord(GameDTO dto) {
+	public GameDTO getWord(GameDTO dto) { //문제 메소드
 		
 		getConn();
 		 
-		String sql = "select * \r\n"
+		String sql = "select que_id ,lower(que_word) as que_word ,script \r\n"
 				+ "from (select * from question order by DBMS_RANDOM.RANDOM)\r\n"
 				+ "where sub_id = ? and difficulty = ? and rownum <2";
 		
@@ -56,13 +56,13 @@ public class GameDAO {
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1,dto.getSub_id());
+			psmt.setInt(1, dto.getSub_id());
 			psmt.setInt(2, dto.getDifficult());
 			
 			rs = psmt.executeQuery();
 			
 			if(rs.next()){
-				GameDTO result = new GameDTO(rs.getInt("que_id"),rs.getString("que_word"),rs.getString("script"));
+				 result = new GameDTO(rs.getInt("que_id"),rs.getString("que_word"),rs.getString("script"));
 				
 				
 			}else{
