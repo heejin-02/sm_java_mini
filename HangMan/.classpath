@@ -7,5 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Users/smhrd/Desktop/오라클 SQL/jdbc/lib/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="/Applications/SQLDeveloper.app/Contents/Resources/sqldeveloper/jdbc/lib/ojdbc11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
