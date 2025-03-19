@@ -3,6 +3,7 @@ package View;
 import java.util.Scanner;
 
 import Controller.UserController;
+import Model.GameDTO;
 import Controller.GameController;
 
 public class Main {
@@ -59,10 +60,22 @@ public class Main {
 					System.out.println("=======난이도 설정=======");
 					System.out.println("[1] 쉬움 [2] 중간 [3] 어려움");
 					System.out.print(">>");
-					input = sc.nextInt();
+					int level = sc.nextInt();
 					
 					
 					
+					// 1. 자바 2. 파이썬 3. C언어 4. sql
+					
+					System.out.println("=======주제 설정=======");
+					System.out.println("[1] 자바 [2] 파이썬 [3] C언어 [4] SQL");
+					System.out.print(">>");
+					int sub = sc.nextInt();
+					
+					
+					GameDTO dto= GameCon.GameQuestion(level,sub);
+					
+					System.out.println(dto.getQue_word());
+					System.out.println(dto.getScript());
 					String[] hangMan = GameCon.hangMan();
 					for(String h : hangMan){
 						

@@ -1,5 +1,9 @@
 package Controller;
 
+import Model.GameDAO;
+import Model.GameDTO;
+import Model.SubjectDTO;
+
 public class GameController {
 
 	
@@ -90,6 +94,28 @@ public class GameController {
 		
 		 return alph;
 	}
+	
+	
+	public GameDTO GameQuestion(int level , int sub){
+		
+		
+		
+		GameDTO dto = new GameDTO(level,sub);
+		GameDAO dao = new GameDAO();
+		GameDTO result= dao.getWord(dto);
+		
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
