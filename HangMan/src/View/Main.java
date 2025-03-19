@@ -2,7 +2,7 @@ package View;
 
 import java.util.Scanner;
 
-import Controller.Controller;
+import Controller.UserController;
 import Controller.GameController;
 
 public class Main {
@@ -11,7 +11,7 @@ public class Main {
 
 		Scanner sc = new Scanner(System.in);
 
-		Controller con = new Controller();
+		UserController con = new UserController();
 		
 		GameController GameCon = new GameController();
 		

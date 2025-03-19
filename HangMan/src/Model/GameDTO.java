@@ -3,11 +3,11 @@ package Model;
 public class GameDTO {
 	
 	
-	private int questionNo;
-	private String question;
-	private String subject; 
-	private int levels;
-	
+	private int que_id;
+	private int sub_id;
+	private String que_word;
+	private int difficult;
+	private String script;
 	
 	
 	

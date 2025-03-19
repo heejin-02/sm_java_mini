@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import Model.UserDTO;
 
-public class Controller {
+public class UserController {
 
 	
 	
