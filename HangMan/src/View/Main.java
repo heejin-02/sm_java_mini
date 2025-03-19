@@ -17,7 +17,7 @@ public class Main {
 		
 		int input = 0;
 	
-		//adsgkjadslgjlsgjldsngladskng
+
 		System.out.println(" _                                              \n"
 				+ "| |                                             \n"
 				+ "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
@@ -34,6 +34,7 @@ public class Main {
 
 		if (input == 1) {
 			// 로그인
+			
 			System.out.print("아이디를 입력하세요 >");
 			String id = sc.next();
 			System.out.print("비밀번호를 입력하세요 >");
@@ -41,13 +42,14 @@ public class Main {
 			
 			// 로그인 여부
 			boolean log = con.Login(id, pw);
-
+			
+			//로그인 성공
 			if (log) {
-				
+				System.out.println("로그인 성공");
 				while(true) {
 					
 					
-				System.out.println("===========반복문============");
+				System.out.println("===========게임 메뉴 ============");
 				System.out.println("[1] 게임플레이 [2] 내정보보기 [3] 명예의전당 [4] 회원탈퇴 [5] 종료");
 				System.out.print(">>");
 				input = sc.nextInt();
@@ -107,6 +109,7 @@ public class Main {
 			// 회원가입
 
 		}
+		
 
 	}
 

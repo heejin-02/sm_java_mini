@@ -28,6 +28,8 @@ public class GameDAO {
 		}
 	}
 	
+
+	
 	public void close() { //도구 회수 메소드
 
 		try {
