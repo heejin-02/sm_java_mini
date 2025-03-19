@@ -19,9 +19,9 @@ public class UserDAO {
 			// getConn
 			// - 드라이버 로딩, url/user/pw로 db접속
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			String url="jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "hr";
-			String password = "hr";
+			String url="jdbc:oracle:thin:@ project-db-campus.smhrd.com:1523:xe";
+			String user = "hapjeong_24SW_DS_p1_1";
+			String password = "smhrd1";
 		conn = DriverManager.getConnection(url, user, password);
 			
 		} catch (Exception e) {
