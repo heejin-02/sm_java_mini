@@ -154,5 +154,9 @@ public class UserDAO {
 		}
 	}
 	
+	public ArrayList<UserDTO> info_list() {
+		
+	}
+	
 	
 }
