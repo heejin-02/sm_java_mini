@@ -154,8 +154,8 @@ public class UserDAO {
 		}
 	}
 	
-	public ArrayList<UserDTO> info_list() {
-		ArrayList<UserDTO> result = new ArrayList<>();
+	public ArrayList<Integer> info_list(String id) {
+		ArrayList<Integer> result = new ArrayList<>();
 		
 		getConn();
 		
@@ -163,8 +163,19 @@ public class UserDAO {
 		
 		try {
 			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				int f_score = rs.getInt("f_score");
+				result.add(f_score);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 		return result;

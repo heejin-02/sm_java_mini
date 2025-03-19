@@ -9,8 +9,6 @@ public class UserController {
 	
 	// db 연결 쿼리문
 	UserDAO dao = new UserDAO();
-	// 유저 정보 반환 변수
-	ArrayList<UserDTO> resultList = new ArrayList<>();
 	
 	
 	public int Join(String id,String pw , String name){ // 회원가입
@@ -36,8 +34,10 @@ public class UserController {
 	
 
 	
-	public ArrayList<UserDTO> UserInfo(String id , String pw){ // 내정보보기
-		resultList = dao.info_list();
+	public ArrayList<Integer> UserInfo(String id){ // 내정보보기
+		ArrayList<Integer> resultList = new ArrayList<>();
+		
+		resultList = dao.info_list(id);
 		
 		return resultList;
 	}
