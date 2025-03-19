@@ -33,25 +33,13 @@ public class UserDAO {
 	
 	public boolean Login(UserDTO dto) {
 		getConn();
-		String sql = "SELECT * FROM USERS WHERE USER_ID = ? AND USER_PW =?";
-		boolean is_login = false;
+		String sql = "SELECT * FROM USERS WHERE USER_ID = ? USER_PW =?";
+		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, dto.getUser_id());
 			psmt.setString(2, dto.getUser_pw());
-			rs = psmt.executeQuery();
-			if (rs.next()) { 
-				// 로그인 성공
-				// 이름 님 환영합니다 출력
-				String uName = rs.getString("user_name");
-				System.out.println(uName + "님 환영합니다~");
-				is_login = true;
-
-			} else {
-				System.out.println("로그인이 실패했습니다..");
-				System.out.println("아이디와 비밀번호를 확인해보세요.");
-			}
-
+			result = psmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +47,7 @@ public class UserDAO {
 			close();
 		}
 		
-		return is_login;
+		return true;
 	
 	}
 	

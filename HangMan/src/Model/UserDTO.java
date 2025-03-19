@@ -13,7 +13,6 @@ public class UserDTO {
 		this.user_pw = pw;
 	}
 
-	
 	public String getUser_id() {
 		return user_id;
 	}
