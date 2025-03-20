@@ -154,5 +154,35 @@ public class UserDAO {
 		}
 	}
 	
+	public ArrayList<ScoreDTO> info_list(String id) {
+		ArrayList<ScoreDTO> result = new ArrayList<>();
+		
+		getConn();
+		
+		String sql = "select * from FINAL_SCORE where USER_ID = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+
+			
+			while(rs.next()) {
+				String score_id = rs.getString("SCORE_ID");
+				String user_id = rs.getString("USER_ID");
+				int f_score = rs.getInt("F_SCORE");
+				result.add(new ScoreDTO(score_id, user_id, f_score));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return result;
+	}
+	
 	
 }

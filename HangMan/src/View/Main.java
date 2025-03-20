@@ -9,6 +9,8 @@ import Controller.UserController;
 import Model.UserDTO;
 import Controller.GameController;
 import Model.GameDTO;
+import Model.Mp3player;
+import Model.ScoreDTO;
 import Model.UserDAO;
 
 public class Main {
@@ -22,20 +24,24 @@ public class Main {
 		UserDAO userDAO = new UserDAO();
 		List<UserDTO> top5Users = userDAO.getTop5Users();
 		Timer timer = new Timer();
+		ScoreDTO scoreDTO = new ScoreDTO();
+
 		int input;
 
-		System.out.println(" _                                              \n"
-				+ "| |                                             \n"
-				+ "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
-				+ "| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n"
-				+ "| | | | (_| | | | | (_| | | | | | | (_| | | | |\n"
-				+ "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n"
-				+ "                    __/ |                      \n"
-				+ "                   |___/                       ");
+        GameCon.welcomeSound();
+        System.out.println(" _                                              \n"
+                + "| |                                             \n"
+                + "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
+                + "| '_ \\ / _` | '_ \\ / _` | '_ ` _ \\ / _` | '_ \\ \n"
+                + "| | | | (_| | | | | (_| | | | | | | (_| | | | |\n"
+                + "|_| |_|\\__,_|_| |_|\\__, |_| |_| |_|\\__,_|_| |_|\n"
+                + "                    __/ |                      \n"
+                + "                   |___/                       ");
 
-		System.out.println();
-		System.out.print("[1] 로그인 [2] 회원가입 >> ");
-		input = sc.nextInt();
+        System.out.println();
+        
+        System.out.print("[1] 로그인 [2] 회원가입 >> ");
+        input = sc.nextInt();
 
 		if (input == 1) {
 			// 로그인
@@ -47,12 +53,14 @@ public class Main {
 			// 로그인 여부 확인
 			boolean log = con.Login(id, pw);
 
-			if (log) {
-				while (true) {
-					System.out.println("===========메뉴============");
-					System.out.println("[1] 게임플레이 [2] 내정보보기 [3] 명예의전당 [4] 회원탈퇴 [5] 종료");
-					System.out.print(">> ");
-					input = sc.nextInt();
+            if (log) {
+            	 GameCon.StartGame(); 
+
+                while (true) {
+                    System.out.println("===========메뉴============");
+                    System.out.println("[1] 게임플레이 [2] 내정보보기 [3] 명예의전당 [4] 회원탈퇴 [5] 종료");
+                    System.out.print(">> ");
+                    input = sc.nextInt();
 
 					if (input == 1) {
 						// 주제 설정
@@ -78,7 +86,7 @@ public class Main {
 						char[] queList = GameCon.QueList(dto.getQue_word());
 
 						// 게임 진행
-						for (int i = 0; i < hangMan.length; i++) {
+						for (int i = 0; i <= hangMan.length; i++) {
 							// 행맨 출력
 							System.out.println(hangMan[i]);
 
@@ -89,7 +97,23 @@ public class Main {
 							System.out.print("\n>> ");
 
 							char sel = sc.next().charAt(0);
+							GameCon.playTypingSound();
 
+                            // 알파벳 포함 여부 체크
+							if (dto.getQue_word().toLowerCase().contains(String.valueOf(sel))) { // 대소문자 구별 X
+								GameCon.playCorrectSound();
+								// 문제문장 리스트에 알파벳 추가
+								queList = GameCon.alphAdd(queList, sel, dto.getQue_word());
+								i--; // 틀리지 않았으므로 기회 유지
+							} else {
+								GameCon.playWrongSound(); }
+                            
+                            // 문제문장 출력
+                            System.out.println("\n");
+                            for (char que : queList) {
+                                System.out.print(que + " ");
+                            }
+                            System.out.println("\n");
 							// 알파벳 포함 여부 체크
 							if (dto.getQue_word().toLowerCase().contains(String.valueOf(sel))) { // 대소문자 구별 X
 								// 문제문장 리스트에 알파벳 추가
@@ -116,47 +140,41 @@ public class Main {
 								System.out.print("설명 : ");
 								System.out.println(dto.getScript() + "\n");
 								System.out.println("게임 종료! 정답을 맞췄습니다.");
+								GameCon.playSuccessSound();
+                                GameCon.stop();
 								if (score > 0)
 									System.out.println(" + 20점 ");
 
 								break;
 							}
 
-							// 행맨이 끝났을 때
-							if (i == hangMan.length - 1) {
-								boolean fail = true;
+                            // 행맨이 끝났을 때
+                            if (i == hangMan.length - 1) {
+                                System.out.println("게임 실패! 정답은: " + dto.getQue_word());
+                            }
+                        }
 
-								int score = GameCon.scoreCal(fail, id); // 점수 계산 메소드
+                    } else if (input == 2) {
+                        // 내정보 보기
+                        System.out.println("======== 내 기록 보기 ========");
+                        ArrayList<ScoreDTO> f_score = con.UserInfo(id);
+                        if (f_score != null) {
+                            for (ScoreDTO score : f_score) {
+                                System.out.print("플레이 넘버: " + score.getScore_id() + "\t");
+                                System.out.print("아이디: " + score.getUser_id() + "\t");
+                                System.out.println("점수: " + score.getF_score());
+                            }
+                        } else {
+                            System.out.println("현재 플레이 기록이 존재하지 않습니다.");
+                        }
 
-								System.out.println("게임 실패! 정답은: " + dto.getQue_word());
-								System.out.print("설명 : ");
-								System.out.println(dto.getScript() + "\n");
-								if (score > 0)
-									System.out.println(" - 10점 ");
-
-							}
-
-						}
-
-					} else if (input == 2) {
-						// 내정보 보기
-//                        System.out.println("=== 내 정보 보기 ===");
-//                        UserDTO user = con.getUserInfo(id);
-//                        if (user != null) {
-//                            System.out.println("아이디: " + user.getUser_id());
-//                            System.out.println("이름: " + user.getUser_name());
-//                            System.out.println("점수: " + user.getScore());
-//                        } else {
-//                            System.out.println("사용자 정보를 불러올 수 없습니다.");
-						// }
-
-					} else if (input == 3) {
-						// 명예의 전당
-//                        System.out.println("=== 점수 상위 5명 ===");
-//                        List<UserDTO> top5Users = con.getTop5Users(); // 수정된 부분
-//                        for (UserDTO user : top5Users) {
-//                            System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name() + ", 점수: " + user.getScore());
-//                        }
+                    } else if (input == 3) {
+                         //명예의 전당
+                        System.out.println("=== 점수 상위 5명 ===");
+                        List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
+                        for (UserDTO user : top5Users) {
+                            System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name() + ", 점수: " + user.getScore());
+                        }
 
 					} else if (input == 4) {
 						// 회원 탈퇴
@@ -206,6 +224,6 @@ public class Main {
 			System.out.println("잘못된 입력입니다.");
 		}
 
-		sc.close(); // 스캐너 닫기
-	}
+        sc.close(); // 스캐너 닫기
+    }
 }
