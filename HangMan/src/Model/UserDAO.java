@@ -154,8 +154,8 @@ public class UserDAO {
 		}
 	}
 	
-	public ArrayList<Integer> info_list(String id) {
-		ArrayList<Integer> result = new ArrayList<>();
+	public ArrayList<ScoreDAO> info_list(String id) {
+		ArrayList<ScoreDAO> result = new ArrayList<>();
 		
 		getConn();
 		

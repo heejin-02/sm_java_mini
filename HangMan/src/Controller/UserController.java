@@ -34,8 +34,8 @@ public class UserController {
 	
 
 	
-	public ArrayList<Integer> UserInfo(String id){ // 내정보보기
-		ArrayList<Integer> resultList = new ArrayList<>();
+	public ArrayList<ScoreDAO> UserInfo(String id){ // 내정보보기
+		ArrayList<ScoreDAO> resultList = new ArrayList<>();
 		
 		resultList = dao.info_list(id);
 		

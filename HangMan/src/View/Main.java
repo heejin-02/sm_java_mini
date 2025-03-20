@@ -119,15 +119,15 @@ public class Main {
 
                     } else if (input == 2) {
                         // 내정보 보기
-//                        System.out.println("=== 내 정보 보기 ===");
-//                        UserDTO user = con.getUserInfo(id);
-//                        if (user != null) {
-//                            System.out.println("아이디: " + user.getUser_id());
-//                            System.out.println("이름: " + user.getUser_name());
-//                            System.out.println("점수: " + user.getScore());
-//                        } else {
-//                            System.out.println("사용자 정보를 불러올 수 없습니다.");
-                        //}
+                        System.out.println("=== 내 정보 보기 ===");
+                        ArrayList<Integer> f_score = con.UserInfo(id);
+                        if (f_score != null) {
+                            System.out.println("아이디: " + user.getUser_id());
+                            System.out.println("이름: " + user.getUser_name());
+                            System.out.println("점수: " + user.getScore());
+                        } else {
+                            System.out.println("사용자 정보를 불러올 수 없습니다.");
+                        }
 
                     } else if (input == 3) {
                         // 명예의 전당
