@@ -121,14 +121,14 @@ public class Main {
 
                     } else if (input == 2) {
                         // 내정보 보기
-                        System.out.println("=== 내 정보 보기 ===");
+                        System.out.println("======== 내 기록 보기 ========");
                         ArrayList<ScoreDTO> f_score = con.UserInfo(id);
                         if (f_score != null) {
                             System.out.println("플레이 넘버: " + scoreDTO.getScore_id());
                             System.out.println("아이디: " + scoreDTO.getUser_id());
                             System.out.println("점수: " + scoreDTO.getF_score());
                         } else {
-                            System.out.println("사용자 정보를 불러올 수 없습니다.");
+                            System.out.println("현재 플레이 기록이 존재하지 않습니다.");
                         }
 
                     } else if (input == 3) {
