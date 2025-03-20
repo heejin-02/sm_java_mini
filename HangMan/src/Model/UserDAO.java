@@ -49,6 +49,13 @@ public class UserDAO {
 			if (rs.next()) { 
 				// 로그인 성공
 				// 이름 님 환영합니다 출력
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				System.out.println("");
 				String uName = rs.getString("user_name");
 				System.out.println(uName + "님 환영합니다~");
 				is_login = true;
@@ -172,7 +179,8 @@ public class UserDAO {
 				String score_id = rs.getString("SCORE_ID");
 				String user_id = rs.getString("USER_ID");
 				int f_score = rs.getInt("F_SCORE");
-				result.add(new ScoreDTO(score_id, user_id, f_score));
+				String game_result = rs.getString("GAME_RESULT");
+				result.add(new ScoreDTO(score_id, user_id, f_score, game_result));
 			}
 			
 		} catch (SQLException e) {

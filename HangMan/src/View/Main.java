@@ -25,6 +25,7 @@ public class Main {
 		List<UserDTO> top5Users = userDAO.getTop5Users();
 		Timer timer = new Timer();
 		ScoreDTO scoreDTO = new ScoreDTO();
+		UserDTO userDTO = new UserDTO();
 
 		int input;
 
@@ -78,16 +79,25 @@ public class Main {
 
 						if (input == 1) {
 							// 주제 설정
-							System.out.println("======= 주제 설정 =======");
-							System.out.println("[1] 자바 [2] 파이썬 [3] C언어 [4] SQL");
-							System.out.print(">> ");
+							System.out.println("================ 주 제  설 정 ================");
+							System.out.println("");
+							System.out.println("[1] 자바    [2] 파이썬   [3] C언어   [4] SQL");
+							System.out.println("");
+							System.out.print("선택 >> ");
 							int sub = sc.nextInt();
+							System.out.println("");
+							System.out.println("");
+							System.out.println("");
 
 							// 난이도 설정
-							System.out.println("======= 난이도 설정 =======");
-							System.out.println("[1] 쉬움 [2] 중간 [3] 어려움");
-							System.out.print(">> ");
+							System.out.println("========= 난 이 도  설 정 =========");
+							System.out.println("");
+							System.out.println("[1] 쉬움    [2] 중간    [3] 어려움");
+							System.out.println("");
+							System.out.print("선택 >> ");
 							int level = sc.nextInt();
+							System.out.println("");
+							System.out.println("");
 
 							// 문제 가져오기
 							GameDTO dto = GameCon.GameQuestion(level, sub);
@@ -96,6 +106,7 @@ public class Main {
 							String[] hangMan = GameCon.hangMan();
 							// 알파벳 리스트
 							ArrayList<Character> alphList = GameCon.alphabet();
+							
 							// 문제문장 리스트
 							char[] queList = GameCon.QueList(dto.getQue_word());
 
@@ -108,9 +119,13 @@ public class Main {
 								for (Character al : alphList) {
 									System.out.print(al + " ");
 								}
-								System.out.print("\n>> ");
+								System.out.println("");
+								System.out.print("\n알파벳을 골라주세요! >> ");
+								
 
 								char sel = sc.next().charAt(0);
+								System.out.println("");
+								System.out.println("===================================================");
 								GameCon.playTypingSound();
 
 								// 알파벳 포함 여부 체크
@@ -132,7 +147,6 @@ public class Main {
 
 								// 사용된 알파벳 제거
 								alphList.removeIf(c -> Character.toLowerCase(c) == Character.toLowerCase(sel));
-								// 대소문자 구별 X
 
 								// 정답 맞췄을 때
 								if (new String(queList).equals(dto.getQue_word())) {
@@ -165,7 +179,7 @@ public class Main {
 								// 행맨이 끝났을 때
 								if (i == hangMan.length - 1) {
 									System.out.println("게임 실패! 정답은: " + dto.getQue_word());
-									System.out.println("다시시작하겠습니까?");
+									System.out.println("다시 시작하겠습니까?");
 	                                System.out.print("[1] 네 [2] 아니오 >>");
 	                                int conti = sc.nextInt();
 	                                if(conti == 1) {
@@ -190,9 +204,8 @@ public class Main {
 							ArrayList<ScoreDTO> f_score = con.UserInfo(id);
 							if (f_score != null) {
 								for (ScoreDTO score : f_score) {
-									System.out.print("플레이 넘버: " + score.getScore_id() + "\t");
-									System.out.print("아이디: " + score.getUser_id() + "\t");
-									System.out.println("점수: " + score.getF_score());
+									System.out.println("최종 점수: " + score.getF_score() + "   " + (score.getGame_result().equals("y") ? "플레이 결과: 성공" : "플레이 결과: 실패"));
+									System.out.println("");
 								}
 							} else {
 								System.out.println("현재 플레이 기록이 존재하지 않습니다.");
@@ -204,19 +217,21 @@ public class Main {
 
 						} else if (input == 3) {
 							// 명예의 전당
-							System.out.println("=== 점수 상위 5명 ===");
+							System.out.println("=============== T O P 5  ================");
+							System.out.println("");
 							List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
 							for (UserDTO user : top5Users) {
-								System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name()
-										+ ", 점수: " + user.getScore());
+								System.out.println("아이디: " + user.getUser_id() + "\t이름: " + user.getUser_name()
+										+ "\t점수: " + user.getScore());
+								System.out.println("");
 							}
 
 						} else if (input == 4) {
 							// 회원 탈퇴
-							System.out.println("=== 회 원 탈 퇴 ===");
-							System.out.print("ID : ");
+							System.out.println("============= 회 원 탈 퇴 =============");
+							System.out.print("아이디를 입력해주세요. >> ");
 							String user_id = sc.next();
-							System.out.print("PW : ");
+							System.out.print("비밀번호를 입력해주세요. >> ");
 							String user_pw = sc.next();
 
 							int result = con.Withdrawal(user_id, user_pw);
@@ -236,7 +251,7 @@ public class Main {
 						}
 
 						try {
-							Thread.sleep(3000);
+							Thread.sleep(2000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
