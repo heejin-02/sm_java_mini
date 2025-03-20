@@ -145,13 +145,41 @@ public class Main {
 									GameCon.stop();
 									if (score > 0)
 										System.out.println(" + 20점 ");
+									System.out.println("다시시작하겠습니까?");
+	                                System.out.print("[1] 네 [2] 아니오 >>");
+	                                int conti = sc.nextInt();
+	                                if(conti == 1) {
+	                                   i = -1;
+	                                   // 단어 알파벳리스트 문제리스트 초기화
+	                                   dto = GameCon.GameQuestion(level, sub);
+	                                   queList = GameCon.QueList(dto.getQue_word());
+	                                   alphList = GameCon.alphabet();
+	                                }else if(conti == 2) {
+	                                   break;
+	                                }else {
+	                                   System.out.println("잘못된 입력값입니다");
+	                                } 
 
-									break;
 								}
 
 								// 행맨이 끝났을 때
 								if (i == hangMan.length - 1) {
 									System.out.println("게임 실패! 정답은: " + dto.getQue_word());
+									System.out.println("다시시작하겠습니까?");
+	                                System.out.print("[1] 네 [2] 아니오 >>");
+	                                int conti = sc.nextInt();
+	                                if(conti == 1) {
+	                                   i = -1;
+	                                   // 단어 알파벳리스트 문제리스트 초기화
+	                                   dto = GameCon.GameQuestion(level, sub);
+	                                   queList = GameCon.QueList(dto.getQue_word());
+	                                   alphList = GameCon.alphabet();
+	                                }else if(conti == 2) {
+	                                   break;
+	                                }else {
+	                                   System.out.println("잘못된 입력값입니다");
+	                                } 
+
 								}
 							}
 
