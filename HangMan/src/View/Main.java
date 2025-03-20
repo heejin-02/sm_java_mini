@@ -139,9 +139,11 @@ public class Main {
                         System.out.println("======== 내 기록 보기 ========");
                         ArrayList<ScoreDTO> f_score = con.UserInfo(id);
                         if (f_score != null) {
-                            System.out.println("플레이 넘버: " + scoreDTO.getScore_id());
-                            System.out.println("아이디: " + scoreDTO.getUser_id());
-                            System.out.println("점수: " + scoreDTO.getF_score());
+                            for (ScoreDTO score : f_score) {
+                                System.out.print("플레이 넘버: " + score.getScore_id() + "\t");
+                                System.out.print("아이디: " + score.getUser_id() + "\t");
+                                System.out.println("점수: " + score.getF_score());
+                            }
                         } else {
                             System.out.println("현재 플레이 기록이 존재하지 않습니다.");
                         }

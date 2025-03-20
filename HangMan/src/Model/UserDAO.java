@@ -159,13 +159,14 @@ public class UserDAO {
 		
 		getConn();
 		
-		String sql = "select * from FINAL_SCORE where ID = ?";
+		String sql = "select * from FINAL_SCORE where USER_ID = ?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			
 			rs = psmt.executeQuery();
+
 			
 			while(rs.next()) {
 				String score_id = rs.getString("SCORE_ID");
