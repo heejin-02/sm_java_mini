@@ -8,6 +8,7 @@ import Controller.UserController;
 import Model.UserDTO;
 import Controller.GameController;
 import Model.GameDTO;
+import Model.Mp3player;
 import Model.UserDAO;
 
 public class Main {
@@ -112,13 +113,18 @@ public class Main {
                             // 정답 맞췄을 때
                             if (new String(queList).equals(dto.getQue_word())) {
                                 System.out.println("게임 종료! 정답을 맞췄습니다.");
+                                GameCon.endGame();
                                 break;
+                                
                             }
 
                             // 행맨이 끝났을 때
                             if (i == hangMan.length - 1) {
                                 System.out.println("게임 실패! 정답은: " + dto.getQue_word());
+                                GameCon.endGame();
+                                break;
                             }
+                            
                         }
 
                     } else if (input == 2) {
@@ -190,5 +196,6 @@ public class Main {
         }
 
         sc.close(); // 스캐너 닫기
+        GameCon.endGame();
     }
 }

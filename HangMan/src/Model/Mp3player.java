@@ -54,7 +54,7 @@ public class Mp3player {
 		
 	} //play
 	
-	public void close() {
+	public void stop() {
 		if(player !=null) {
 			player.close();
 		}
