@@ -106,7 +106,7 @@ public class Main {
 							String[] hangMan = GameCon.hangMan();
 							// 알파벳 리스트
 							ArrayList<Character> alphList = GameCon.alphabet();
-							
+
 							// 문제문장 리스트
 							char[] queList = GameCon.QueList(dto.getQue_word());
 
@@ -121,7 +121,6 @@ public class Main {
 								}
 								System.out.println("");
 								System.out.print("\n알파벳을 골라주세요! >> ");
-								
 
 								char sel = sc.next().charAt(0);
 								System.out.println("");
@@ -160,39 +159,41 @@ public class Main {
 									if (score > 0)
 										System.out.println(" + 20점 ");
 									System.out.println("다시시작하겠습니까?");
-	                                System.out.print("[1] 네 [2] 아니오 >>");
-	                                int conti = sc.nextInt();
-	                                if(conti == 1) {
-	                                   i = -1;
-	                                   // 단어 알파벳리스트 문제리스트 초기화
-	                                   dto = GameCon.GameQuestion(level, sub);
-	                                   queList = GameCon.QueList(dto.getQue_word());
-	                                   alphList = GameCon.alphabet();
-	                                }else if(conti == 2) {
-	                                   break;
-	                                }else {
-	                                   System.out.println("잘못된 입력값입니다");
-	                                } 
+									System.out.print("[1] 네 [2] 아니오 >>");
+									int conti = sc.nextInt();
+									if (conti == 1) {
+										i = -1;
+										// 단어 알파벳리스트 문제리스트 초기화
+										dto = GameCon.GameQuestion(level, sub);
+										queList = GameCon.QueList(dto.getQue_word());
+										alphList = GameCon.alphabet();
+									} else if (conti == 2) {
+										break;
+									} else {
+										System.out.println("잘못된 입력값입니다");
+									}
 
 								}
 
 								// 행맨이 끝났을 때
 								if (i == hangMan.length - 1) {
+									GameCon.stop();
+									GameCon.playdieSound();
 									System.out.println("게임 실패! 정답은: " + dto.getQue_word());
 									System.out.println("다시 시작하겠습니까?");
-	                                System.out.print("[1] 네 [2] 아니오 >>");
-	                                int conti = sc.nextInt();
-	                                if(conti == 1) {
-	                                   i = -1;
-	                                   // 단어 알파벳리스트 문제리스트 초기화
-	                                   dto = GameCon.GameQuestion(level, sub);
-	                                   queList = GameCon.QueList(dto.getQue_word());
-	                                   alphList = GameCon.alphabet();
-	                                }else if(conti == 2) {
-	                                   break;
-	                                }else {
-	                                   System.out.println("잘못된 입력값입니다");
-	                                } 
+									System.out.print("[1] 네 [2] 아니오 >>");
+									int conti = sc.nextInt();
+									if (conti == 1) {
+										i = -1;
+										// 단어 알파벳리스트 문제리스트 초기화
+										dto = GameCon.GameQuestion(level, sub);
+										queList = GameCon.QueList(dto.getQue_word());
+										alphList = GameCon.alphabet();
+									} else if (conti == 2) {
+										break;
+									} else {
+										System.out.println("잘못된 입력값입니다");
+									}
 
 								}
 							}
@@ -204,10 +205,12 @@ public class Main {
 							ArrayList<ScoreDTO> f_score = con.UserInfo(id);
 							if (f_score != null) {
 								for (ScoreDTO score : f_score) {
-									System.out.println("최종 점수: " + score.getF_score() + "   " + (score.getGame_result().equals("y") ? "플레이 결과: 성공" : "플레이 결과: 실패"));
+									System.out.println("최종 점수: " + score.getF_score() + "   "
+											+ (score.getGame_result().equals("y") ? "플레이 결과: 성공" : "플레이 결과: 실패"));
 									System.out.println("");
 								}
 							} else {
+
 								System.out.println("현재 플레이 기록이 존재하지 않습니다.");
 							}
 
@@ -220,10 +223,9 @@ public class Main {
 							System.out.println("=============== T O P 5  ================");
 							System.out.println("");
 							List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
-							for (UserDTO user : top5Users) {
-								System.out.println("아이디: " + user.getUser_id() + "\t이름: " + user.getUser_name()
-										+ "\t점수: " + user.getScore());
-								System.out.println("");
+							for (UserDTO user : top5User) {
+								System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name()
+										+ ", 점수: " + user.getScore());
 							}
 
 						} else if (input == 4) {
@@ -244,6 +246,7 @@ public class Main {
 
 						} else if (input == 5) {
 							// 종료
+
 							System.out.println("행맨이 종료되었습니다.");
 							break;
 						} else {
