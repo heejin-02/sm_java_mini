@@ -48,10 +48,9 @@ public class UserController {
 	
 
 
-	public List<UserDTO> getTop5User() {
-		// TODO Auto-generated method stub
-		return null;
-	} 
+	   public List<UserDTO> getTop5User() {
+		      return dao.getTop5Users(); // 최신 점수 반영된 상위 5명 가져오기
+		   } 
 	
 	
 }

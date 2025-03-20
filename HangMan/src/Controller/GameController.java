@@ -17,8 +17,8 @@ public class GameController {
 	            """
 	           
                 ====================================
-                |              HELP  ME             |
-                |                                   |
+                |            HELP  ME !!!           |
+                | THERE ARE STILL BUG LEFT TO FIX.. |
                 ====================================
                  ________
 	               --------------------
@@ -117,7 +117,7 @@ public class GameController {
 	   
 	            """,
 	            """
-                  ---------------------
+                ---------------------
 	               |                  |
 	               |                  |
 	              😵                  |  
@@ -189,20 +189,18 @@ public class GameController {
 	}
 	
 	public int scoreCal(boolean winOrFail, String id){
-		GameDAO dao = new GameDAO();
-		int result = 0;
-		if(winOrFail) {
-			 result  = dao.quewin(id);
-		}else {
-			 result  = dao.quefail(id);
-		}
-		
-		
-		
-		
-		return result;
-		
-	}
+	      GameDAO dao = new GameDAO();
+	      int result = 0;
+	      if(winOrFail) {
+	          result  = dao.quewin(id);
+	          dao.scoreSave(id ,"y");
+	      }else {
+	          result  = dao.quefail(id);
+	          dao.scoreSave(id, "n");
+	      }
+	      return result;
+	      
+	   }
 	
 	public void StartGame() {
 		//게임 시작시 배경음악

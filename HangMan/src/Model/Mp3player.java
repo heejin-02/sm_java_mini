@@ -27,6 +27,7 @@ public class Mp3player {
 			player = new Player(bis);
 			//플레이어 객체가 bis를 통해서 mp3파일을 바이트단위로 읽어와서 플레이
 			//음악 재생 
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

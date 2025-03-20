@@ -164,6 +164,8 @@ public class Main {
 
 								// 행맨이 끝났을 때
 								if (i == hangMan.length - 1) {
+									GameCon.stop();
+									GameCon.playdieSound();
 									System.out.println("게임 실패! 정답은: " + dto.getQue_word());
 									System.out.println("다시시작하겠습니까?");
 	                                System.out.print("[1] 네 [2] 아니오 >>");
@@ -195,6 +197,7 @@ public class Main {
 									System.out.println("점수: " + score.getF_score());
 								}
 							} else {
+								
 								System.out.println("현재 플레이 기록이 존재하지 않습니다.");
 							}
 
@@ -203,13 +206,12 @@ public class Main {
 							System.out.println("");
 
 						} else if (input == 3) {
-							// 명예의 전당
-							System.out.println("=== 점수 상위 5명 ===");
-							List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
-							for (UserDTO user : top5Users) {
-								System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name()
-										+ ", 점수: " + user.getScore());
-							}
+		                     System.out.println("=== 점수 상위 5명 ===");
+		                     List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
+		                     for (UserDTO user : top5User) {
+		                        System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name()
+		                              + ", 점수: " + user.getScore());
+		                     }
 
 						} else if (input == 4) {
 							// 회원 탈퇴
@@ -229,6 +231,7 @@ public class Main {
 
 						} else if (input == 5) {
 							// 종료
+							
 							System.out.println("행맨이 종료되었습니다.");
 							break;
 						} else {

@@ -128,5 +128,31 @@ public class GameDAO {
 		return result;
 
 	}
+	
+	public int scoreSave(String id , String YN) {
+	      
+	      getConn();
+	      String sql = "insert into final_score values (default , ? , (select score from users where user_id = ?) , ?)";
+	      try {
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setString(1, id);
+	         psmt.setString(2, id);
+	         psmt.setString(3, YN);
+	         
+	         result = psmt.executeUpdate();
+	         
+	      } catch (SQLException e) {
+	         
+	         e.printStackTrace();
+	      }finally {
+	         close();
+	      }
+	      
+	      
+	      return result;
+	      
+	   }
+
+	
 
 }

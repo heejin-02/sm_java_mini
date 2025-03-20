@@ -183,6 +183,22 @@ public class UserDAO {
 		
 		return result;
 	}
-	
+	  public int updateScore(UserDTO dto) {
+	      getConn();
+	      String sql = "UPDATE users SET SCORE = ? WHERE USER_ID = ?";
+
+	      try {
+	         psmt = conn.prepareStatement(sql);
+	         psmt.setInt(1, dto.getScore()); // 얻은 점수를 설정
+	         psmt.setString(2, dto.getUser_id()); // 아이디로 해당 유저 찾기
+
+	         result = psmt.executeUpdate();
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close();
+	      }
+	      return result;
+	   } 
 	
 }
