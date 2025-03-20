@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Model.UserDAO;
 import Model.UserDTO;
@@ -41,13 +42,12 @@ public class UserController {
 		return null;
 	}
 	
-	public ArrayList<UserDTO> Rank(){ //명예의 전당
-		
-	
-		
-		
+
+
+	public List<UserDTO> getTop5User() {
+		// TODO Auto-generated method stub
 		return null;
-	}
+	} 
 	
 	
 }

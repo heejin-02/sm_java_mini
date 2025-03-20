@@ -23,6 +23,7 @@ public class Main {
 
         int input;
 
+        GameCon.welcomeSound();
         System.out.println(" _                                              \n"
                 + "| |                                             \n"
                 + "| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  \n"
@@ -33,6 +34,7 @@ public class Main {
                 + "                   |___/                       ");
 
         System.out.println();
+        
         System.out.print("[1] 로그인 [2] 회원가입 >> ");
         input = sc.nextInt();
 
@@ -47,6 +49,8 @@ public class Main {
             boolean log = con.Login(id, pw);
 
             if (log) {
+            	 GameCon.StartGame(); 
+
                 while (true) {
                     System.out.println("===========메뉴============");
                     System.out.println("[1] 게임플레이 [2] 내정보보기 [3] 명예의전당 [4] 회원탈퇴 [5] 종료");
@@ -130,12 +134,12 @@ public class Main {
                         //}
 
                     } else if (input == 3) {
-                        // 명예의 전당
-//                        System.out.println("=== 점수 상위 5명 ===");
-//                        List<UserDTO> top5Users = con.getTop5Users(); // 수정된 부분
-//                        for (UserDTO user : top5Users) {
-//                            System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name() + ", 점수: " + user.getScore());
-//                        }
+                         //명예의 전당
+                        System.out.println("=== 점수 상위 5명 ===");
+                        List<UserDTO> top5User = con.getTop5User(); // 수정된 부분
+                        for (UserDTO user : top5Users) {
+                            System.out.println("아이디: " + user.getUser_id() + ", 이름: " + user.getUser_name() + ", 점수: " + user.getScore());
+                        }
 
                     } else if (input == 4) {
                         // 회원 탈퇴
