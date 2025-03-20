@@ -169,7 +169,24 @@ public class GameController {
 	        wrongSound.play();
 	}
 	
-	public void endGame() {
+	public void playTypingSound() {
+		Mp3player typingSound = new Mp3player("music/typing.mp3");
+			typingSound.play();
+	}
+	
+	public void playSuccessSound() {
+		Mp3player successSound = new Mp3player("music/success.mp3");
+			successSound.play();
+	}
+	public void playdieSound() {
+		//게임 오버 효과음
+		Mp3player dieSound = new Mp3player("music/die.mp3");
+			dieSound.play();
+	}
+
+	
+	//노래 멈추기
+	public void stop() {
 		Mp3player bgm = new Mp3player("music/music.mp3");
 		bgm.stop();
 	}

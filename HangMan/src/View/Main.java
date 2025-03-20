@@ -9,6 +9,7 @@ import Model.UserDTO;
 import Controller.GameController;
 import Model.GameDTO;
 import Model.Mp3player;
+import Model.ScoreDTO;
 import Model.UserDAO;
 
 public class Main {
@@ -21,6 +22,7 @@ public class Main {
         GameController GameCon = new GameController();
         UserDAO userDAO = new UserDAO();
         List<UserDTO> top5Users = userDAO.getTop5Users();
+        ScoreDTO scoreDTO = new ScoreDTO();
 
         int input;
 
@@ -92,14 +94,17 @@ public class Main {
                             }
                             System.out.print("\n>> ");
                             String sel = sc.next().toUpperCase();
+                            GameCon.playTypingSound();
 
                             // 알파벳 포함 여부 체크
                             if (dto.getQue_word().toUpperCase().contains(sel)) {
+                            	GameCon.playCorrectSound();
                                 // 문제문장 리스트에 알파벳 추가
                                 queList = GameCon.alphAdd(queList, sel, dto.getQue_word());
                                 i--; // 틀리지 않았으므로 기회 유지
-                            }
-
+                            }else {
+                            GameCon.playWrongSound(); }
+                            
                             // 문제문장 출력
                             System.out.println("\n");
                             for (char que : queList) {
@@ -113,7 +118,8 @@ public class Main {
                             // 정답 맞췄을 때
                             if (new String(queList).equals(dto.getQue_word())) {
                                 System.out.println("게임 종료! 정답을 맞췄습니다.");
-                                GameCon.endGame();
+                                GameCon.playSuccessSound();
+                                GameCon.stop();
                                 break;
                                 
                             }
@@ -121,7 +127,8 @@ public class Main {
                             // 행맨이 끝났을 때
                             if (i == hangMan.length - 1) {
                                 System.out.println("게임 실패! 정답은: " + dto.getQue_word());
-                                GameCon.endGame();
+                                GameCon.playdieSound();
+                                GameCon.stop();
                                 break;
                             }
                             
@@ -129,15 +136,15 @@ public class Main {
 
                     } else if (input == 2) {
                         // 내정보 보기
-//                        System.out.println("=== 내 정보 보기 ===");
-//                        UserDTO user = con.getUserInfo(id);
-//                        if (user != null) {
-//                            System.out.println("아이디: " + user.getUser_id());
-//                            System.out.println("이름: " + user.getUser_name());
-//                            System.out.println("점수: " + user.getScore());
-//                        } else {
-//                            System.out.println("사용자 정보를 불러올 수 없습니다.");
-                        //}
+                        System.out.println("======== 내 기록 보기 ========");
+                        ArrayList<ScoreDTO> f_score = con.UserInfo(id);
+                        if (f_score != null) {
+                            System.out.println("플레이 넘버: " + scoreDTO.getScore_id());
+                            System.out.println("아이디: " + scoreDTO.getUser_id());
+                            System.out.println("점수: " + scoreDTO.getF_score());
+                        } else {
+                            System.out.println("현재 플레이 기록이 존재하지 않습니다.");
+                        }
 
                     } else if (input == 3) {
                          //명예의 전당
@@ -196,6 +203,6 @@ public class Main {
         }
 
         sc.close(); // 스캐너 닫기
-        GameCon.endGame();
+        GameCon.stop();
     }
 }
