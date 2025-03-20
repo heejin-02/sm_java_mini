@@ -252,13 +252,13 @@ public class Main {
 						} else {
 							System.out.println("올바른 입력이 아닙니다. 다시 선택해주세요.");
 						}
-
+						
 						try {
 							Thread.sleep(2000);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
-					}
+					}break;
 				}
 			}
 
