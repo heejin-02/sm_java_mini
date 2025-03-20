@@ -8,6 +8,7 @@ import Controller.UserController;
 import Model.UserDTO;
 import Controller.GameController;
 import Model.GameDTO;
+import Model.ScoreDTO;
 import Model.UserDAO;
 
 public class Main {
@@ -20,6 +21,7 @@ public class Main {
         GameController GameCon = new GameController();
         UserDAO userDAO = new UserDAO();
         List<UserDTO> top5Users = userDAO.getTop5Users();
+        ScoreDTO scoreDTO = new ScoreDTO();
 
         int input;
 
@@ -120,11 +122,11 @@ public class Main {
                     } else if (input == 2) {
                         // 내정보 보기
                         System.out.println("=== 내 정보 보기 ===");
-                        ArrayList<Integer> f_score = con.UserInfo(id);
+                        ArrayList<ScoreDTO> f_score = con.UserInfo(id);
                         if (f_score != null) {
-                            System.out.println("아이디: " + user.getUser_id());
-                            System.out.println("이름: " + user.getUser_name());
-                            System.out.println("점수: " + user.getScore());
+                            System.out.println("플레이 넘버: " + scoreDTO.getScore_id());
+                            System.out.println("아이디: " + scoreDTO.getUser_id());
+                            System.out.println("점수: " + scoreDTO.getF_score());
                         } else {
                             System.out.println("사용자 정보를 불러올 수 없습니다.");
                         }

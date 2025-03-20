@@ -154,12 +154,12 @@ public class UserDAO {
 		}
 	}
 	
-	public ArrayList<ScoreDAO> info_list(String id) {
-		ArrayList<ScoreDAO> result = new ArrayList<>();
+	public ArrayList<ScoreDTO> info_list(String id) {
+		ArrayList<ScoreDTO> result = new ArrayList<>();
 		
 		getConn();
 		
-		String sql = "select f_score from FINAL_SCORE where ID = ?";
+		String sql = "select * from FINAL_SCORE where ID = ?";
 		
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -168,8 +168,10 @@ public class UserDAO {
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				int f_score = rs.getInt("f_score");
-				result.add(f_score);
+				String score_id = rs.getString("SCORE_ID");
+				String user_id = rs.getString("USER_ID");
+				int f_score = rs.getInt("F_SCORE");
+				result.add(new ScoreDTO(score_id, user_id, f_score));
 			}
 			
 		} catch (SQLException e) {

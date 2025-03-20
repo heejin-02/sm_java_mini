@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
+import Model.ScoreDTO;
 import Model.UserDAO;
 import Model.UserDTO;
 
@@ -34,8 +35,8 @@ public class UserController {
 	
 
 	
-	public ArrayList<ScoreDAO> UserInfo(String id){ // 내정보보기
-		ArrayList<ScoreDAO> resultList = new ArrayList<>();
+	public ArrayList<ScoreDTO> UserInfo(String id){ // 내정보보기
+		ArrayList<ScoreDTO> resultList = new ArrayList<>();
 		
 		resultList = dao.info_list(id);
 		
