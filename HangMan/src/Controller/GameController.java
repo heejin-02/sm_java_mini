@@ -162,7 +162,20 @@ public class GameController {
 		Mp3player bgm = new Mp3player("music/music.mp3");
 		bgm.play();
 		
-		System.out.println("게임 시작");
+		System.out.println();
+		System.out.println("   _____                         _____ _             _   \n"
+				+ "  / ____|                       / ____| |           | |  \n"
+				+ " | |  __  __ _ _ __ ___   ___  | (___ | |_ __ _ _ __| |_ \n"
+				+ " | | |_ |/ _` | '_ ` _ \\ / _ \\  \\___ \\| __/ _` | '__| __|\n"
+				+ " | |__| | (_| | | | | | |  __/  ____) | || (_| | |  | |_ \n"
+				+ "  \\_____|\\__,_|_| |_| |_|\\___| |_____/ \\__\\__,_|_|   \\__|\n");
+		System.out.println();
+		
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void welcomeSound() {
