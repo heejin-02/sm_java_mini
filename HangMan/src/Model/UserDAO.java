@@ -55,7 +55,7 @@ public class UserDAO {
 
 				System.out.println("");
 				String uName = rs.getString("user_name");
-				System.out.println(uName + "님 환영합니다~");
+				System.out.println("\u001B[33m"+uName + "\u001B[0m님 환영합니다~");
 				is_login = true;
 
 			} else {
