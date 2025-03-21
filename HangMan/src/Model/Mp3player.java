@@ -42,14 +42,14 @@ public class Mp3player {
 				} catch (JavaLayerException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace(); //이걸 하면 오류남 
-					System.out.println("재생이 안돼?");
+					System.out.println("재생불가");
 					//=> 	BufferedInputStream bis  = null;
 					//버퍼 스트림 오류다 
 				}
 			};
 			
 		};
-		t.setDaemon(true); //이걸 안해주면 3종료를 눌러도 음악이 종료가 안됌 
+		t.setDaemon(true); //이걸 안해주면 3종료를 눌러도 음악 종료가 안된다.
 		
 		t.start();
 		
@@ -57,6 +57,7 @@ public class Mp3player {
 	
 	public void stop() {
 		if(player !=null) {
+			
 			player.close();
 		}
 	}

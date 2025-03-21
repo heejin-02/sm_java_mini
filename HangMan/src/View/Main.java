@@ -69,7 +69,7 @@ public class Main {
 					while (true) {
 						System.out.println("================================= 메 뉴 =================================");
 						System.out.println("");
-						System.out.println("[1] 게임 플레이\t[2] 내 기록 보기\t[3] 명예의 전당\t[4] 회원 탈퇴\t[5] 종료");
+						System.out.println("[1] 게임 플레이\t[2] 게임 방법\t[3] 내 기록 보기\t[4] 명예의 전당\t[5] 회원 탈퇴\t[6] 종료");
 						System.out.println("");
 						System.out.print("선택 >> ");
 						input = sc.nextInt();
@@ -148,17 +148,21 @@ public class Main {
 								alphList.removeIf(c -> Character.toLowerCase(c) == Character.toLowerCase(sel));
 
 								// 정답 맞췄을 때
+								
 								if (new String(queList).equals(dto.getQue_word())) {
 									boolean win = true;
 									int score = GameCon.scoreCal(win, id); // 점수 계산 메소드
 									System.out.print("설명 : ");
 									System.out.println(dto.getScript() + "\n");
-									System.out.println("게임 종료! 정답을 맞췄습니다.");
+									System.out.println("\u001B[32mpublic void gameSuccess() {\r\n"
+						                    + "     System.out.println(\"당신은 개발자를 구했습니다!\");\r\n"
+						                    + "}\u001B[0m");
+
 									GameCon.playSuccessSound();
 									GameCon.stop();
 									if (score > 0)
-										System.out.println(" + 20점 ");
-									System.out.println("다시시작하겠습니까?");
+										System.out.println("\u001B[33m + 20점\u001B[0m");
+									System.out.println("한판 더?");
 									System.out.print("[1] 네 [2] 아니오 >>");
 									int conti = sc.nextInt();
 									if (conti == 1) {
@@ -179,8 +183,11 @@ public class Main {
 								if (i == hangMan.length - 1) {
 									GameCon.stop();
 									GameCon.playdieSound();
-									System.out.println("게임 실패! 정답은: " + dto.getQue_word());
-									System.out.println("다시 시작하겠습니까?");
+									System.out.println("\u001B[31mpublic void gameOver() {\r\n"
+										
+											+ "     System.out.println(\"개발자를 구하지 못했습니다.\");\r\n"
+											+ "}\u001B[0m" + "\n정답은: " + dto.getQue_word());
+									System.out.println("한판 더?");
 									System.out.print("[1] 네 [2] 아니오 >>");
 									int conti = sc.nextInt();
 									if (conti == 1) {
@@ -198,7 +205,26 @@ public class Main {
 								}
 							}
 
-						} else if (input == 2) {
+						} else if (input ==2) {
+							System.out.println("============= 게 임 방 법 =============");
+							System.out.println("💡 게임 방법\r\n"
+									+ "1️ 주어진 단어의 글자를 하나씩 추측해보세요!\r\n"
+									+ "2️ 키워드는 Python, Java, SQL, C 언어에서 출제됩니다.\r\n"
+									+ "3️ 정답을 맞히면 해당 개념에 대한 설명이 제공됩니다.\r\n"
+									+ "4️ 정답을 맞히면 점수가 올라가고, 틀리면 점수가 감소합니다.\r\n"
+									+ "5️ 랭킹 시스템을 통해 최고의 프로그래머에 도전하세요!\r\n"
+									+ "\r\n"
+									+ "🔥 실력을 키우고, 프로그래밍 지식을 쌓아보세요!\r\n\n"
+									+ "🚀 준비됐나요? 그럼 게임을 시작해볼까요?");
+						}
+						
+						
+						
+						
+						
+						
+						
+						else if (input == 3) {
 							// 내정보 보기
 							System.out.println("============= 내  기 록  보 기 =============");
 							System.out.println("");
@@ -218,7 +244,7 @@ public class Main {
 							System.out.println("");
 							System.out.println("");
 
-						} else if (input == 3) {
+						} else if (input == 4) {
 							// 명예의 전당
 							System.out.println("=============== T O P 5  ================");
 							System.out.println("");
@@ -228,7 +254,7 @@ public class Main {
 										+ ", 점수: " + user.getScore());
 							}
 
-						} else if (input == 4) {
+						} else if (input == 5) {
 							// 회원 탈퇴
 							System.out.println("============= 회 원 탈 퇴 =============");
 							System.out.print("아이디를 입력해주세요. >> ");
@@ -244,10 +270,11 @@ public class Main {
 								System.out.println("회원탈퇴 실패. 다시 시도해주세요.");
 							}
 
-						} else if (input == 5) {
+						} else if (input == 6) {
 							// 종료
-
+							GameCon.stop();
 							System.out.println("행맨이 종료되었습니다.");
+							
 							break;
 						} else {
 							System.out.println("올바른 입력이 아닙니다. 다시 선택해주세요.");
@@ -258,6 +285,8 @@ public class Main {
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
+					
+					GameCon.stop();
 					}break;
 				}
 			}
@@ -284,4 +313,5 @@ public class Main {
 
 		sc.close(); // 스캐너 닫기
 	}
+	
 }

@@ -10,7 +10,7 @@ import Model.Mp3player;
 import Model.SubjectDTO;
 
 public class GameController {
-
+	private Mp3player bgmstop;
 	
 	public String[] hangMan(){
 		String[] hangman = {
@@ -257,9 +257,10 @@ public class GameController {
 
 	
 	//노래 멈추기
-	public void stop() {
-		Mp3player bgm = new Mp3player("music/music.mp3");
-		bgm.stop();
-	}
+	 public void stop() {
+	        if (bgmstop != null) {
+	            bgmstop.stop();
+	        }
+	 }
 	
 }
