@@ -181,6 +181,8 @@ public class Main {
 
 								// 행맨이 끝났을 때
 								if (i == hangMan.length - 1) {
+									boolean fail = false;
+									int score = GameCon.scoreCal(fail, id); // 점수 계산 메소드
 									GameCon.stop();
 									GameCon.playdieSound();
 									System.out.println("\u001B[31mpublic void gameOver() {\r\n"
@@ -274,6 +276,7 @@ public class Main {
 							// 종료
 							GameCon.stop();
 							System.out.println("행맨이 종료되었습니다.");
+							System.exit(0);
 							
 							break;
 						} else {

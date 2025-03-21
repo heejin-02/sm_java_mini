@@ -163,7 +163,7 @@ public class UserDAO {
 
 		getConn();
 
-		String sql = "select * from FINAL_SCORE where USER_ID = ?";
+		String sql = "select * from FINAL_SCORE where USER_ID = ? order by score_id desc";
 
 		try {
 			psmt = conn.prepareStatement(sql);
