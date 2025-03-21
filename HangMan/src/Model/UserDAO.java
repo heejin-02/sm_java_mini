@@ -117,6 +117,7 @@ public class UserDAO {
 
 	}
 
+	
 	public List<UserDTO> getTop5Users() {
 		List<UserDTO> userList = new ArrayList<>();
 		String sql = "SELECT USER_ID, USER_NAME, SCORE FROM (SELECT * FROM USERS ORDER BY SCORE DESC) WHERE ROWNUM <= 5";
